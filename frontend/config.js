@@ -1,1 +1,1 @@
-﻿const API_URL = "https://coinverse-backend.onrender.com";
+﻿const API_URL = "https://coinverse-smp.onrender.com";
