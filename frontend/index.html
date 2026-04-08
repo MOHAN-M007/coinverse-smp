@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COINVERSE Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1>COINVERSE SMP Dashboard</h1>
+      <div class="keybox">
+        <input id="apiKey" type="password" placeholder="API Key" />
+        <button id="saveKey">Connect</button>
+      </div>
+    </header>
+
+    <section class="summary">
+      <article class="card"><h3>Total Players</h3><p id="totalPlayers">0</p></article>
+      <article class="card"><h3>Total COIN</h3><p id="totalCoins">0</p></article>
+      <article class="card"><h3>Pending</h3><p id="pendingCount">0</p></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Players</h2>
+        <small id="lastSync">not synced</small>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Coins</th>
+            <th>Job</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="playersTable"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
