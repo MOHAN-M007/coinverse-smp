@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,37 +8,139 @@
 </head>
 <body>
   <main class="app">
-    <header class="topbar">
-      <h1>COINVERSE SMP Dashboard</h1>
-      <div class="keybox">
-        <input id="apiKey" type="password" placeholder="API Key" />
-        <button id="saveKey">Connect</button>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Coinverse Control</p>
+        <h1>COINVERSE SMP Dashboard</h1>
+        <p class="subtext">Approve registrations, manage roles, and moderate players from one place.</p>
+      </div>
+      <div class="connect-box">
+        <label>
+          API Key
+          <input id="apiKey" type="password" placeholder="Enter backend API key" />
+        </label>
+        <button id="saveKey">Save & Sync</button>
       </div>
     </header>
 
-    <section class="summary">
-      <article class="card"><h3>Total Players</h3><p id="totalPlayers">0</p></article>
-      <article class="card"><h3>Total COIN</h3><p id="totalCoins">0</p></article>
-      <article class="card"><h3>Pending</h3><p id="pendingCount">0</p></article>
+    <section class="summary-grid">
+      <article class="card">
+        <span>Total Players</span>
+        <strong id="totalPlayers">0</strong>
+      </article>
+      <article class="card">
+        <span>Total COIN</span>
+        <strong id="totalCoins">0</strong>
+      </article>
+      <article class="card">
+        <span>Pending</span>
+        <strong id="pendingCount">0</strong>
+      </article>
+      <article class="card">
+        <span>Banned</span>
+        <strong id="bannedCount">0</strong>
+      </article>
     </section>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Players</h2>
-        <small id="lastSync">not synced</small>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Coins</th>
-            <th>Job</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="playersTable"></tbody>
-      </table>
+    <section class="layout">
+      <section class="panel table-panel">
+        <div class="panel-head">
+          <div>
+            <h2>Players</h2>
+            <small id="lastSync">Waiting for first sync</small>
+          </div>
+          <div class="filters">
+            <input id="searchInput" type="search" placeholder="Search player" />
+            <select id="statusFilter">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+              <option value="banned">Banned</option>
+            </select>
+            <button id="refreshBtn" class="ghost">Refresh</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Coins</th>
+                <th>Job</th>
+                <th>Roles</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="playersTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel profile-panel">
+        <div class="panel-head">
+          <div>
+            <h2>Player Profile</h2>
+            <small id="profileState">Select a player to manage</small>
+          </div>
+        </div>
+
+        <div id="profileEmpty" class="empty-state">Choose a player from the table to open their profile.</div>
+
+        <div id="profileContent" class="profile-content" hidden>
+          <section class="profile-block">
+            <h3 id="profileName">-</h3>
+            <div class="profile-meta">
+              <span id="profileStatus" class="badge">-</span>
+              <span id="profileBan" class="badge muted">Not banned</span>
+            </div>
+          </section>
+
+          <section class="profile-block grid-two">
+            <div>
+              <label>UUID</label>
+              <p id="profileUuid">-</p>
+            </div>
+            <div>
+              <label>Join Date</label>
+              <p id="profileJoinDate">-</p>
+            </div>
+            <div>
+              <label>Coins</label>
+              <p id="profileCoins">0</p>
+            </div>
+            <div>
+              <label>Primary Job</label>
+              <p id="profileJob">-</p>
+            </div>
+            <div>
+              <label>All Jobs</label>
+              <p id="profileJobs">-</p>
+            </div>
+            <div>
+              <label>Updated</label>
+              <p id="profileUpdated">-</p>
+            </div>
+          </section>
+
+          <section class="profile-block">
+            <label for="rolesInput">Roles</label>
+            <input id="rolesInput" type="text" placeholder="admin, moderator, banker" />
+            <small>Comma separated roles for this player.</small>
+            <button id="saveRolesBtn">Save Roles</button>
+          </section>
+
+          <section class="profile-block action-group">
+            <button id="approveBtn">Approve</button>
+            <button id="rejectBtn" class="ghost danger">Reject</button>
+            <button id="kickBtn" class="ghost warn">Kick</button>
+            <button id="banBtn" class="ghost danger">Ban</button>
+            <button id="unbanBtn" class="ghost success">Unban</button>
+          </section>
+        </div>
+      </aside>
     </section>
   </main>
 
